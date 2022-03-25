@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport"
+          content="user-scaleble=yes,maximum-scale=3.0" />
+    <link rel="stylesheet" href="css/index.css">
+    <title>3D融像</title>
+
+
+    <script src="js/Component/jquery.min.js"></script>
+
+    <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/isLoading.css" rel="stylesheet" />
+
+
+    <link href="js/Component/tools/colorbox.css" rel="stylesheet" />
+    <!-- jQuery -->
+    <script src="js/Component/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        var QueryString = function () {
+            // This function is anonymous, is executed immediately and
+            // the return value is assigned to QueryString!
+            var query_string = {};
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                // If first entry with this name
+                if (typeof query_string[pair[0]] === "undefined") {
+                    query_string[pair[0]] = pair[1];
+                    // If second entry with this name
+                } else if (typeof query_string[pair[0]] === "string") {
+                    var arr = [query_string[pair[0]], pair[1]];
+                    query_string[pair[0]] = arr;
+                    // If third or later entry with this name
+                } else {
+                    query_string[pair[0]].push(pair[1]);
+                }
+            }
+            return query_string;
+        }();
+
+        $(function () {
+            var tID = QueryString.id;
+            //alert(tID);
+            var vBase64 = parent.$("#" + tID).attr("src");
+            $("#imgShow").attr('src', vBase64);
+        });
+
+
+    </script>
+
+
+</head>
+<body>
+    <div class="app">
+
+        <!--彈出視窗區-->
+        <div id="IP_Modal" class="f-center-center">
+            <div class="MD_card">
+               
+
+                <!--3. 驗光 – 歷史紀錄-->
+                <div id="MD_optometry" class="MD_content">
+                    <div class="blockNav">
+                        <div class="btns f-start-center">
+                            <button class="IPbtn text-sm">2020/11/02</button>
+                            <button class="IPbtn text-sm active">2020/11/02</button>
+                            <button class="IPbtn text-sm">2020/11/02</button>
+                        </div>
+                        <div class="btns f-start-center">
+                            <button class="IPbtn active">S01</button>
+                            <button class="IPbtn">S02</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <h3 class="title">驗光單號：001-0010-Q01</h3>
+                        </div>
+                        <div class="h-center-center list">
+                            <div class="f-center-between">
+                                <div>1.用途</div>
+                                <div>中近 1M</div>
+                            </div>
+                            <table class="">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>S</th>
+                                        <th>C</th>
+                                        <th>A</th>
+                                        <th>PD</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>右R</th>
+                                        <td>-11.9</td>
+                                        <td>5.25</td>
+                                        <td>177</td>
+                                        <td>35</td>
+                                    </tr>
+                                    <tr>
+                                        <th>左L</th>
+                                        <td>-9.25</td>
+                                        <td>4.00</td>
+                                        <td>177</td>
+                                        <td>32</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="f-start-between">
+                                <div style="flex: 0 0 60px;">2. ADD</div>
+                                <div class="h-center-center" style="flex: 1 0;">
+                                    <div class="f-center-between full">
+                                        <div>(右R)</div>
+                                        <div>1.25</div>
+                                    </div>
+                                    <div class="f-center-between full">
+                                        <div>(左L)</div>
+                                        <div>1.25</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="f-center-between">
+                                <div>3. 瞳孔間距 (E) PD</div>
+                                <div>66 mm</div>
+                            </div>
+
+                            <div class="f-center-between">
+                                <div>4. 利眼</div>
+                                <div>左</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer_btns h-center-center">
+                        <button class="IPbtn full back modalClose">帶入本次驗光</button>
+                        <button onclick="return parent.ColorBoxPlugin.ColorBoxClose();" class="IPbtn full next modalClose">關閉視窗</button>
+                    </div>
+                </div>
+
+                <!--3. 驗光 – 確認ADD需求-->
+                <div id="MD_ADD" class="MD_content" style="display:none;">
+                    <div>
+                        <div>
+                            <h3 class="title">驗光單號：001-0010-Q01</h3>
+                        </div>
+                        <div class="h-center-center list">
+                            <div class="f-center-between">
+                                <div>1.用途</div>
+                                <div>中近 1M</div>
+                            </div>
+                            <p class="title">以ADD值為「1.25」產生新驗光單！</p>
+                        </div>
+                    </div>
+                    <div class="footer_btns h-center-center">
+                        <button class="IPbtn full back modalClose">確定需求</button>
+                        <button onclick="return parent.ColorBoxPlugin.ColorBoxClose();" class="IPbtn full next modalClose">關閉視窗</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

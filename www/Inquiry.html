@@ -1,0 +1,247 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Inquiry.aspx.cs" Inherits="Inquiry" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+        
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="initial-scale=1, width=device-width, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+        <meta name="color-scheme" content="light dark"/>
+        <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div class="app">  
+    <div id="nquiry" class="block">
+
+                <div class="f-center-center blockNav">
+                    <div class="btns">
+                        <div>
+                            <button class="IPbtn active">Q01</button>
+                            <button class="IPbtn">Q02</button>
+                            <button class="IPbtn">Q03</button>
+                            <button class="IPbtn">Q04</button>
+                            <button class="IPbtn">Q05</button>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="icon-plus" >
+                            <asp:Image ID="Image1" runat="server" ImageUrl="img/icon_plus.svg" />
+                        </a>
+                    </div>
+                    <div>
+                        <button class="IPbtn text-sm modalOpen" data-modalcontent="#MD_nquiry">查詢歷史問卷</button>
+                    </div>
+                </div>
+
+                <div class="detail">
+                    <h3 class="title">問診單號：001-0010-Q01</h3>
+                    <h4 class="label">你好，為了完善此次配鏡效果，請填寫以下問題，讓我們了解您的需求。<br>問卷包含：<br>
+                    <ul>一、視覺品質：瞭解雙眼融像及眼球光學穩定度等，可能影響您視覺品質因素</ul>
+                    <ul>二、使用習慣：瞭解在您日常使用「眼鏡」的情境</ul>
+                    <ul>三、配鏡需求：瞭解您此次配鏡需求</ul>
+                    </h4>
+                    <div>
+                        <h4>一、 視覺品質</h4>
+                        <ul><h5>(一)	您曾被診斷有眼睛相關疾病史或眼睛開刀經驗？</h5></ul>
+                        <div>
+                            <!--
+                                <asp:RadioButtonList ID="Q01" CssClass="label" runat="server" AutoPostBack="true" Width="100%">
+                                    <asp:ListItem Value="N">無（請跳第六題）</asp:ListItem>
+                                    <asp:ListItem Value="Y">有</asp:ListItem>
+                                </asp:RadioButtonList>
+                            -->
+
+                            <table id="Q01" width="100%">
+                                <tr>
+                                <td>
+                                    <input id="RadioButtonList_City_0" type="radio" name="RadioButtonList_City" value="0" checked="checked" />
+                                    <label for="RadioButtonList_City_0">無（請跳第六題）</label>
+                                    </td>
+                                </tr>
+                                    <tr>
+                                        
+                                <td>
+                                    <input id="RadioButtonList_City_1" type="radio" name="RadioButtonList_City" value="1" />
+                                    <label for="RadioButtonList_City_1">有</label>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>                 
+                    <div id="V02" runat="server">
+                        <h4>一、 視覺品質-病症篇</h4>
+                        <ul><h5>(二)請問您「右眼」曾被判定病症嗎？(可複選)</h5></ul>
+                        <div>
+                            <asp:CheckBox ID="Q02_1" runat="server" Text="無"/>
+                            <asp:CheckBox ID="Q02_2" runat="server" Text="眼壓高"/>
+                            <asp:CheckBox ID="Q02_3" runat="server" Text="青光眼"/>
+                            <asp:CheckBox ID="Q02_4" runat="server" Text="黃斑部病變"/>
+                            <asp:CheckBox ID="Q02_5" runat="server" Text="白內障"/>
+                            <asp:CheckBox ID="Q02_6" runat="server" Text="乾眼症"/>
+                        </div>
+                    </div>
+                    <div id="V03" runat="server">                        
+                        <ul><h5>(三)請問您「左眼」曾被判定病症嗎？(可複選)</h5></ul>
+                        <div>
+                            <asp:CheckBox ID="Q03_1" runat="server" Text="無"/>
+                            <asp:CheckBox ID="Q03_2" runat="server" Text="眼壓高"/>
+                            <asp:CheckBox ID="Q03_3" runat="server" Text="青光眼"/>
+                            <asp:CheckBox ID="Q03_4" runat="server" Text="黃斑部病變"/>
+                            <asp:CheckBox ID="Q03_5" runat="server" Text="白內障"/>
+                            <asp:CheckBox ID="Q03_6" runat="server" Text="乾眼症"/>
+                        </div>
+                    </div>
+                    <div id="V04" runat="server">                        
+                        <ul><h5>(四)請問您「右眼」曾手術嗎？(可複選)</h5></ul>
+                        <div>
+                            <asp:CheckBox ID="Q04_1" runat="server" Text="無"/>
+                            <asp:CheckBox ID="Q04_2" runat="server" Text="更換人工水晶體相關手術"/>
+                            <asp:CheckBox ID="Q04_3" runat="server" Text="近視雷射相關手術"/>
+                            <asp:CheckBox ID="Q04_4" runat="server" Text="視網膜相關手術"/>
+                            <asp:CheckBox ID="Q04_5" runat="server" Text="飛蚊症相關手術"/>
+                            <asp:CheckBox ID="Q04_6" runat="server" Text="角膜移植手術"/>
+                            <asp:CheckBox ID="Q04_7" runat="server" Text="斜視矯正手術"/>
+                        </div>
+                    </div>
+                    <div id="V05" runat="server">                        
+                        <ul><h5>(五)請問您「左眼」曾手術嗎？(可複選)</h5></ul>
+                        <div>
+                            <asp:CheckBox ID="Q05_1" runat="server" Text="無"/>
+                            <asp:CheckBox ID="Q05_2" runat="server" Text="更換人工水晶體相關手術"/>
+                            <asp:CheckBox ID="Q05_3" runat="server" Text="近視雷射相關手術"/>
+                            <asp:CheckBox ID="Q05_4" runat="server" Text="視網膜相關手術"/>
+                            <asp:CheckBox ID="Q05_5" runat="server" Text="飛蚊症相關手術"/>
+                            <asp:CheckBox ID="Q05_6" runat="server" Text="角膜移植手術"/>
+                            <asp:CheckBox ID="Q05_7" runat="server" Text="斜視矯正手術"/>
+                        </div>
+                    </div>
+                    <div>                        
+                        <ul><h5>(六) 請問平常是否有發生視力模糊情況？</h5></ul>
+                        <div>
+                        <asp:RadioButtonList ID="Q06" CssClass="label" runat="server" AutoPostBack="true" Width="100%">
+                            <asp:ListItem Value="0">無（請跳第九題）</asp:ListItem>
+                            <asp:ListItem Value="1">有，一週2-3次偶爾發生視力模糊或影像疊影</asp:ListItem>
+                            <asp:ListItem Value="2">有，每天經常發生視力模糊或影像疊影</asp:ListItem>
+                        </asp:RadioButtonList>                        
+                        </div>
+                    </div>
+                    <div id="V07" runat="server">                        
+                        <ul><h5>(七) 您是否有被診斷為斜視或弱視(瞭解影響您雙眼融像可能狀況)</h5></ul>
+                        <div>
+                        <asp:RadioButtonList ID="Q07" CssClass="label" runat="server" AutoPostBack="true" Width="100%">
+                            <asp:ListItem Value="0">無</asp:ListItem>
+                            <asp:ListItem Value="1">斜視</asp:ListItem>
+                            <asp:ListItem Value="2">複視</asp:ListItem>
+                            <asp:ListItem Value="3">弱視</asp:ListItem>
+                            <asp:ListItem Value="4">老視(老花)</asp:ListItem>
+                        </asp:RadioButtonList>                        
+                        </div>
+                    </div>
+                    <div id="V08" runat="server">                        
+                        <ul><h5>(八) 您是否有被診斷與眼睛有關的身體問題(瞭解影響您視覺品質可能狀況)</h5></ul>
+                        <div>
+                        <asp:RadioButtonList ID="Q08" CssClass="label" runat="server" AutoPostBack="true" Width="100%">
+                            <asp:ListItem Value="0">無</asp:ListItem>
+                            <asp:ListItem Value="1">甲狀腺</asp:ListItem>
+                            <asp:ListItem Value="2">白內障</asp:ListItem>
+                            <asp:ListItem Value="3">糖內障</asp:ListItem>                            
+                        </asp:RadioButtonList>                        
+                        </div>
+                    </div>
+                    <div>
+                        <h4>二、 使用習慣(2題): 瞭解您雙眼平時使用情況</h4>
+                        <ul><h5>(九) 根據您的工作情境，您工作時的用眼狀態與下列何者相似？</h5></ul>
+                        <div>
+                        <asp:RadioButtonList ID="Q09" CssClass="label" runat="server" AutoPostBack="true" Width="100%">
+                            <asp:ListItem Value="1">司機(戶外路標、夜間視力著重者)</asp:ListItem>
+                            <asp:ListItem Value="2">老師(授課、批作業等遠距+近距工作者)</asp:ListItem>
+                            <asp:ListItem Value="3">業務員(房仲、業務等戶外工作奔波者)</asp:ListItem>
+                            <asp:ListItem Value="4">服務業(餐廳、收銀員等室內工作服務者)</asp:ListItem>
+                            <asp:ListItem Value="5">辦公室行政工作者(銀行、會計、行政、軟體工程師等電腦工作者)</asp:ListItem>
+                            <asp:ListItem Value="6">醫事工作者(醫師、護理師等院內工作者)</asp:ListItem>
+                            <asp:ListItem Value="7">作業員(生產線、機械操作、包裝等站立工作操作者)</asp:ListItem>
+                            <asp:ListItem Value="8">特殊近距工作者(手術醫師、畫家、裁縫師、刻印章等近距工作者)</asp:ListItem>
+                        </asp:RadioButtonList>                        
+                        </div>
+                    </div>
+                    <div>                        
+                        <ul><h5>(十) 新鏡配戴頻率？</h5></ul>
+                        <div>
+                        <asp:RadioButtonList ID="Q10" CssClass="label" runat="server" AutoPostBack="true" Width="100%">
+                            <asp:ListItem Value="1">從早到晚不管看遠看近都戴同一副眼鏡</asp:ListItem>
+                            <asp:ListItem Value="2">白天戴隱形眼鏡，晚上才戴框架眼鏡</asp:ListItem>
+                            <asp:ListItem Value="3">只有需要用的時候才戴眼鏡</asp:ListItem>
+                            <asp:ListItem Value="4">日常生活配戴(外出、居家等非近距離環境)</asp:ListItem>
+                            <asp:ListItem Value="5">近距離需求配戴</asp:ListItem>                            
+                        </asp:RadioButtonList>                        
+                        </div>
+                    </div>
+                    <div>
+                        <h4>三、 使用習慣(2題): 瞭解您本次配鏡主要需求，幫助我們判定您最常用眼的視覺距離</h4>
+                        <ul><h5>(十一) 今來配鏡的原因和目的</h5></ul>
+                        <div>
+                        <asp:RadioButtonList ID="Q11" CssClass="label" runat="server" AutoPostBack="true" Width="100%">
+                            <asp:ListItem Value="1">眼鏡看不清楚了</asp:ListItem>
+                            <asp:ListItem Value="2">鏡框太舊了</asp:ListItem>
+                            <asp:ListItem Value="3">鏡片刮傷嚴重</asp:ListItem>
+                            <asp:ListItem Value="4">鏡框斷掉</asp:ListItem>
+                            <asp:ListItem Value="5">鏡片破掉</asp:ListItem>
+                            <asp:ListItem Value="6">想換新的鏡框款式</asp:ListItem>                            
+                        </asp:RadioButtonList>                        
+                        </div>
+                    </div>
+                    <div>                        
+                        <ul><h5>(十二) 此次配鏡您想改善那項情境的用眼感受？</h5></ul>
+                        <div>
+                        <asp:RadioButtonList ID="Q12" CssClass="label" runat="server" AutoPostBack="true" Width="100%">
+                            <asp:ListItem Value="1">戶外遠方看清楚（戶外、運動、走路，400cm以上距離）</asp:ListItem>
+                            <asp:ListItem Value="2">室內遠方看清楚（室內簡報、黑板、電視，400cm以上距離）</asp:ListItem>
+                            <asp:ListItem Value="3">開車專用（紅綠燈路標、儀表板，約80~600cm距離）</asp:ListItem>
+                            <asp:ListItem Value="4">工作辦公室內專用（辦公、室內，約40~400cm距離）</asp:ListItem>
+                            <asp:ListItem Value="5">筆記型電腦（約40~60cm距離）</asp:ListItem>
+                            <asp:ListItem Value="6">桌上型電腦（約60~80cm距離）</asp:ListItem>
+                            <asp:ListItem Value="7">看書報（書、報，約40cm~100cm距離）</asp:ListItem>
+                            <asp:ListItem Value="8">工作需求(一)（雕刻，約20~40cm距離）</asp:ListItem>
+                            <asp:ListItem Value="9">工作需求(二)（畫畫，約30~60cm距離）</asp:ListItem>  
+                            <asp:ListItem Value="10">工作需求(三)（手術，約30~60cm距離）</asp:ListItem>                           
+                        </asp:RadioButtonList>                        
+                        </div>
+                    </div>
+                    <div>                        
+                        <ul><h5>(十三)請問下述內容是否正確：</h5></ul>
+                        <div>
+                            <asp:Label ID="lblResult" runat="server" Text="總結："></asp:Label>
+                            <asp:RadioButtonList ID="Q13" CssClass="label" runat="server" AutoPostBack="true" Width="100%">
+                                <asp:ListItem Value="N">是。謝謝您的回答，接下來請您配合驗光師的操作…</asp:ListItem>
+                                <asp:ListItem Value="Y">否 (回到第十一題重新作答)</asp:ListItem>                            
+                            </asp:RadioButtonList>
+                            <p><asp:Label ID="lblMemo" runat="server" Text="(註：驗光師依問卷，填寫需求距離)"></asp:Label></p>
+                            <asp:Label ID="lblAst1" runat="server" Text="驗光師協助確認眼鏡使用需求距離：遠距需求"></asp:Label>
+                            <asp:TextBox ID="txtDit_F" runat="server" Text="" Width="5%"></asp:TextBox>
+                            <asp:Label ID="lblAst2" runat="server" Text="cm、近距需求"></asp:Label>
+                            <asp:TextBox ID="txtDit_N" runat="server" Text="" Width="5%"></asp:TextBox>
+                            <asp:Label ID="lblAst3" runat="server" Text="cm、其他需求"></asp:Label>
+                            <asp:TextBox ID="txtDit_O" runat="server" Text="" Width="5%"></asp:TextBox>
+                            <asp:Label ID="lblAst4" runat="server" Text="cm"></asp:Label>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-center-center">
+                    <button class="IPbtn" style="width:90%;padding:10px;">儲存</button>
+                </div>
+                <div class="footer_btns">
+                    <button class="back IPbtn gotoPage" data-pagename="#get_form">BACK</button>
+                    
+                    <button class="next IPbtn gotoPage" data-pagename="#optometry">NEXT</button>
+                </div>
+            </div>
+    </div>
+    </form>
+</body>
+</html>
