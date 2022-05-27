@@ -271,16 +271,20 @@ p.center{ text-align:center;}
 .colData > div:nth-child(1){flex:1 0 40px;display: flex;align-items: flex-end;text-align: center;}
 input.glassEffect{width:60%;margin: 0 auto;}
 
+#info-m .point, #info-p .point{fill:#014c8d;}
 /*5-1.*塑膠*/
-#info-p .point{fill:#014c8d;}
-#info-p .point.active{fill:#ED9E41;}
+#info-m .point.active,
+#info-p .point.active{
+    fill:#ED9E41;
+}
 
 
 /*更新*/
+#info-m .customBox, 
 #info-p .customBox{
     color:#fff;
     background-color: #014C8D;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -288,13 +292,17 @@ input.glassEffect{width:60%;margin: 0 auto;}
     margin: 10px 0;
 }
 
+#info-m .customBox .b-title,
 #info-p .customBox .b-title{
     margin-bottom: 20px;
 }
 
+#info-m .scale,
 #info-p .scale{
     width: 60%;
+    margin: 10px 0;
 }
+#info-m .progBoxes,
 #info-p .progBoxes{
     /*
     display: flex;
@@ -302,18 +310,63 @@ input.glassEffect{width:60%;margin: 0 auto;}
     */
     width: 100%;
 }
+#info-m .scaleRuler,
+#info-p .scaleRuler{
+    width: 80px;
+    height:10px;
+    background-color: #fff;
+    margin: 10px;
+}
+#info-m .i-progBox,
 #info-p .i-progBox{
-    /*flex:0 0 50%;*/
+    width: 95%;
     display: flex;
     align-items: center;
 }
+#info-m .b-title,
+#info-p .b-title{
+    display: flex;
+}
+
+#info-m .b-title h3,
+#info-p .b-title h3{
+    margin: 0;
+}
+#info-m .progBoxes .row,
 #info-p .progBoxes .row{
     display: flex;
     justify-content:space-between;
 }
-#info-p .i-progBox input{width: 20px;height: 10px;}
-#info-p .i-progBox progress { border-radius: 0;height: 12px; max-width:100% }
-#info-p .i-progBox progress::-webkit-progress-value { background: #70D7FD; }
+#info-m  .row .label,
+#info-p  .row .label{
+    padding: 0 10px;
+}
+
+#info-m .i-progBox input,
+#info-p .i-progBox input{
+    width: 40px;height: 10px;
+}
+
+#info-m .i-progBox.head,
+#info-p .i-progBox.head{
+    display: flex;
+    justify-content: center;
+    font-size: 1.6em;
+    font-weight: bolder;
+}
+
+#info-m .i-progBox input:focus,
+#info-p .i-progBox input:focus{
+    color: #fc0;
+}
+#info-m .i-progBox progress ,
+#info-p .i-progBox progress { 
+    border-radius: 0;height: 12px; width:100%;/* min-width:100px;*/ 
+}
+#info-m .i-progBox progress::-webkit-progress-value , 
+#info-p .i-progBox progress::-webkit-progress-value { 
+    background: #70D7FD; 
+}
 /*5-2.**/
 #info-p2 {
     overflow-x: hidden;
@@ -352,6 +405,9 @@ input.glassEffect{width:60%;margin: 0 auto;}
     pointer-events: none;
     height: 230px;
 }
+
+.bar.on line{stroke:#f00}
+.bar.on circle{fill: #f00;}
 /*
 #info-p2 .faceCtrl .bar1{left: 0;}
 #info-p2 .faceCtrl .bar2{left: calc(25% - 15px);}
@@ -362,7 +418,7 @@ input.glassEffect{width:60%;margin: 0 auto;}
 #info-p2 .faceCtrl  .barLine{
     position: absolute;
     top: calc(50% - 20px);
-    left: calc(50% - 30px);
+    left: calc(50% - 29px);
     width: 60px;
     height: 40px;
 }
@@ -435,9 +491,16 @@ input.glassEffect{width:60%;margin: 0 auto;}
     left:0;
     z-index: 10;
 }
-#IP_Modal .MD_card{background-color: #fff;border-radius: 20px;max-width: 300px; ;min-width: 90%;min-height:50%;margin: 5% auto 100% auto;}
+#IP_Modal .MD_card{
+    background-color: #fff;
+    border-radius: 20px;
+    max-width: 300px; 
+    min-width: 90%;
+    min-height:50%;
+    margin: 5% auto 0 auto;
+}
 #IP_Modal .MD_header{height: 40px;display:flex;justify-content: flex-end;align-items: center;} 
-#IP_Modal .MD_content{padding:10px;} 
+#IP_Modal .MD_content{padding:10px;    margin-bottom: 50px;} 
 #IP_Modal .MD_content .blockNav{padding:0;} 
 #IP_Modal .MD_content .title{text-align:center;} 
 #IP_Modal .list > div{width:100%;border-bottom: 1px solid #BCCBFD;padding:10px 5px;margin-bottom: 15px;}
@@ -447,14 +510,22 @@ input.glassEffect{width:60%;margin: 0 auto;}
 #MD_optometry table{width: 100%;border-collapse: collapse;}
 #MD_optometry table th, #MD_optometry table td{text-align: center;border:1px solid #546ED0;padding: 5px;}
 
-
 #IP_Modal .MD_content.eyeCapture .eyeCaptureBox{
     width:100%;
-    max-width:350px;
+    /*max-width:350px;*/
     height:200px;
     overflow: hidden;
     position: relative;
 } 
+
+#IP_Modal .MD_content.eyeCapture .eyeCaptureBox .redLine{
+    position: absolute;
+    height: 200px;
+    width: 2px;
+    left: calc(50% - 1px);
+    background-color: #f30;
+}
+
 #IP_Modal .MD_content.eyeCapture .eyeCaptureBox .dragImg{
     position: absolute;
 } 

@@ -21,17 +21,24 @@
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
 document.addEventListener('deviceready', onDeviceReady, false);
 
+
+/*20220411 控制scaleRuler比例尺*/
+const scaleRulerResize = () => {
+    document.querySelectorAll(".scaleRuler").forEach(item => {
+        console.log(item.dataset.scale)
+        item.style.width = document.querySelector("progress." + item.dataset.scale).clientWidth / 2 + "px"
+    })
+}
+window.addEventListener("resize", scaleRulerResize)
+
 function onDeviceReady() {
     // Cordova is now initialized. Have fun!
 
     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
     /*  document.getElementById('deviceready').classList.add('ready');*/
 
-
     /*控制線段變色 */
     lineControl();
-
-
 }
 
 /*Modal 視窗操作*/
@@ -108,6 +115,9 @@ lineControl();
         }
         document.querySelector(page).style.display = "block";
         document.documentElement.scrollTop = 0
+
+        //20220411
+        scaleRulerResize()
     })
 });
 
@@ -138,7 +148,7 @@ document.querySelectorAll(".PPInput").forEach(input => {
     //百分比的BAR變化
     input.addEventListener('change', event => {
         const _pr = event.currentTarget.dataset.progress;
-        document.querySelector("." + _pr).value = event.currentTarget.value
+        document.querySelector("." + _pr).value = parseInt(event.currentTarget.value * 5.0)
     })
 
 })
@@ -199,12 +209,17 @@ const bars = [
 let barsSw = false
 let targetBar;
 const barsDown = event => {
+    targetBar && targetBar.classList.remove('on')
     targetBar = event.currentTarget
+    targetBar.classList.add('on')
     barsSw = true
 }
 const barsUp = event => {
     barsSw = false
+    //targetBar.classList.remove('on')
 }
+
+
 const barsMove = event => {
     if (barsSw) {
         let index = parseInt(targetBar.dataset.index)
@@ -218,20 +233,24 @@ const barsMove = event => {
             limitR = parseInt(bars[index + 1].style.left, 10)
         }
         let boxW = document.querySelector(".faceCtrl").offsetWidth
-        let curT = (event.pageX || event.touches[0].pageX) - ((window.innerWidth  - boxW) / 2)
+        let curT = (event.pageX || event.touches[0].pageX) - ((window.innerWidth - boxW) / 2)
         curT = curT < 0 ? 0 : curT > boxW ? boxW : curT;
         let percent = (curT / boxW) * 100;
         if (percent > limitL && percent < limitR) {
-
             targetBar.style.left = `${percent}%`;
             eyeDistance()
         }
     }
 }
 
+
+
 bars.map((cBar, index) => {
-    if (index == bars.length - 1) {
-        cBar.style.left = `96%`;
+    if (index == 0) {
+        cBar.style.left = `15%`;
+    } else if (index == bars.length - 1) {
+        //cBar.style.left = `96%`;
+        cBar.style.left = `85%`;
     } else {
         cBar.style.left = `${(  (100/(bars.length-1))*index) }%`;
 
@@ -244,9 +263,39 @@ bars.map((cBar, index) => {
     cBar.addEventListener('mousedown', barsDown)
     document.addEventListener('mousemove', barsMove)
     document.addEventListener('mouseup', barsUp)
-    eyeDistance()
+    //eyeDistance()
 })
 
+//20220503 微調Bar
+const fineTuningBar = event=>{
+    const btn = event.currentTarget
+
+    let boxW = document.querySelector(".faceCtrl").offsetWidth
+    
+    let step = 100/boxW
+    if(targetBar){
+        let nLeft = parseFloat(targetBar.style.left)
+        console.log(nLeft)
+        if(btn.classList.contains("FT_plus")){
+            if(nLeft < 100){
+                nLeft += step
+            }
+        }
+        if(btn.classList.contains("FT_minus")){            
+            if(nLeft > 0){
+                nLeft -= step
+            }
+        }
+        targetBar.style.left = `${nLeft}%`
+
+       
+        eyeDistance()
+    }
+}
+document.querySelectorAll(".FT").forEach(btn=>{
+    btn.addEventListener("click", fineTuningBar)
+    //btn.addEventListener("touchend", fineTuningBar)
+})
 
 
 
@@ -279,25 +328,42 @@ let nowX = 0
 let nowY = 0
 let imgX = 0
 let imgY = 0
+let dragSw = false
 let fixBody = false
 
 const dragImg = document.querySelector(".dragImg");
 
-dragImg.addEventListener("touchstart", event => {
-    nowX = event.touches[0].screenX
-    nowY = event.touches[0].screenY
+const dragImgStartHanderer = event =>{
+    nowX = event.screenX || event.touches[0].screenX
+    nowY = event.screenY || event.touches[0].screenY
     imgX = parseInt(event.target.style.left, 10)
     imgY = parseInt(event.target.style.top, 10)
-    fixBody = true
-})
+    fixBody = true;
+    dragSw = true
+}
 
-dragImg.addEventListener("touchmove", event => {
-    let curX = event.touches[0].screenX - nowX
-    let curY = event.touches[0].screenY - nowY
-    dragImg.style.left = `${imgX + curX}px`
-    dragImg.style.top = `${imgY + curY}px`
-})
+const dragImgMoveHanderer = event =>{
 
+    
+    if(dragSw){
+        let curX =event.touches?  event.touches[0].screenX - nowX:event.screenX - nowX 
+        let curY =event.touches?  event.touches[0].screenY - nowY:event.screenY - nowY 
+        dragImg.style.left = `${imgX + curX}px`
+        dragImg.style.top = `${imgY + curY}px`
+    }
+    
+}
+
+const dragImgEndHanderer = event =>{
+    dragSw = false
+}
+
+dragImg.addEventListener("mousedown", dragImgStartHanderer)
+dragImg.addEventListener("mousemove", dragImgMoveHanderer)
+dragImg.addEventListener("touchstart", dragImgStartHanderer)
+dragImg.addEventListener("touchmove", dragImgMoveHanderer)
+dragImg.addEventListener("touchend", dragImgEndHanderer)
+dragImg.addEventListener("mouseup", dragImgEndHanderer)
 
 dragImg.addEventListener("touchstart", event => {
     fixBody = false
@@ -315,6 +381,7 @@ window.addEventListener("scroll", (e) => {
 });
 
 document.querySelector(".eyeCaptureDone").addEventListener("click", event => {
+    document.querySelector("#IP_Modal .MD_content.eyeCapture .eyeCaptureBox .redLine").style.display = "none";
     html2canvas(document.querySelector(".eyeCaptureBox")).then(function (canvas) {
         //document.querySelector(".faceCtrl .editEyeImg").style.backgroundImage = `url(${canvas.toDataURL()})`
         document.querySelector(".faceCtrl .editEyeImg").src = canvas.toDataURL()
@@ -323,5 +390,6 @@ document.querySelector(".eyeCaptureDone").addEventListener("click", event => {
         [...document.querySelectorAll('.MD_content')].map(content => {
             content.style.display = "none"
         }); //關閉所有MD_content
+        document.querySelector("#IP_Modal .MD_content.eyeCapture .eyeCaptureBox .redLine").style.display = "block";
     });
 })
