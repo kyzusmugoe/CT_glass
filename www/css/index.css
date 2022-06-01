@@ -393,7 +393,26 @@ input.glassEffect{width:60%;margin: 0 auto;}
     height: 200px;
     object-fit: cover;
     background-color: #aaa;
+    
 }
+
+/*#info-p2 .faceCtrl::before,
+#info-p2 .faceCtrl::after,*/
+#IP_Modal .MD_content.eyeCapture .eyeCaptureBox::before,
+#IP_Modal .MD_content.eyeCapture .eyeCaptureBox::after{
+    position:absolute;
+    content:" ";
+    width: 1px;
+    height: 100%;
+    background-color: #33aa00;
+    z-index: 1;
+}
+/*#info-p2 .faceCtrl::before*/
+#IP_Modal .MD_content.eyeCapture .eyeCaptureBox::before
+{ left: 18px;}
+/*#info-p2 .faceCtrl::after*/
+#IP_Modal .MD_content.eyeCapture .eyeCaptureBox::after
+{  left: 97%;}
 
 #info-p2 .faceCtrl .bar{
     position: absolute;
@@ -524,6 +543,16 @@ input.glassEffect{width:60%;margin: 0 auto;}
     width: 2px;
     left: calc(50% - 1px);
     background-color: #f30;
+}
+
+#IP_Modal .MD_content.eyeCapture .eyeCaptureBox .redLine::after{
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: -600px;
+    height: 2px;
+    width: 1200px;
+    background-color: #33aa00;
 }
 
 #IP_Modal .MD_content.eyeCapture .eyeCaptureBox .dragImg{

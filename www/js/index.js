@@ -170,10 +170,11 @@ const openEyeCapture = base64 => {
 uploadBtn.addEventListener("click", event => {
     uploadInput.click();
     uploadInput.value = "";
-    document.querySelector('html').classList.add("is-locked");
+    //document.querySelector('html').classList.add("is-locked");
 })
 
 uploadInput.addEventListener("change", event => {
+    document.querySelector('html').classList.add("is-locked");
     if (event.target.files && event.target.files[0]) {
         var FR = new FileReader();
         FR.addEventListener("load", function (e) {
@@ -211,6 +212,8 @@ let targetBar;
 const barsDown = event => {
     targetBar && targetBar.classList.remove('on')
     targetBar = event.currentTarget
+
+    console.log(targetBar)
     targetBar.classList.add('on')
     barsSw = true
 }
@@ -237,6 +240,7 @@ const barsMove = event => {
         curT = curT < 0 ? 0 : curT > boxW ? boxW : curT;
         let percent = (curT / boxW) * 100;
         if (percent > limitL && percent < limitR) {
+            //targetBar.style.left = `calc(${percent}% - 15px)`;
             targetBar.style.left = `${percent}%`;
             eyeDistance()
         }
@@ -277,7 +281,7 @@ const fineTuningBar = event=>{
         let nLeft = parseFloat(targetBar.style.left)
         console.log(nLeft)
         if(btn.classList.contains("FT_plus")){
-            if(nLeft < 100){
+            if(nLeft < 96){
                 nLeft += step
             }
         }
